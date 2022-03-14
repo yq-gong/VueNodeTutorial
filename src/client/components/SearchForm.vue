@@ -15,11 +15,7 @@
       <button style="width: 12rem;height: 6rem;font-size: 2rem">Search</button>
     </div>
     <div v-show="textSuggestionState">
-      <div
-        :style="{ width: textSuggestionWidth + 2 + 'px' }"
-        class="my-input-suggestion"
-        id="scrollContent1"
-      >
+      <div class="my-input-suggestion" id="scrollContent1">
         <ul
           style="list-style:none;margin : 0;padding: 0;"
           id="ulScrollContent"
@@ -28,7 +24,6 @@
           <li
             @click.self="setRefText(refSearch)"
             style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
-            :style="{ width: textSuggestionWidth - 30 + 'px' }"
           >
             {{ refSearch }}
           </li>
@@ -45,8 +40,9 @@ export default {
   data() {
     return {
       placeHolder: "Pick-up Location",
-      textSuggestionWidth: 0,
+      textSuggestionWidth: 30,
       referralSearchData: [],
+      referralSearch: [],
       inputVal: "",
     };
   },
