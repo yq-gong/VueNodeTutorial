@@ -1,14 +1,13 @@
 <template>
-  <div>
-    <h1>Items</h1>
-
-    <div class="row">
-      <div class="col-md-10"></div>
-      <div class="col-md-2">
-        <router-link :to="{ name: 'CreateItem' }" class="btn btn-primary"
-          >Create Item</router-link
-        >
-      </div>
+  <div class="board">
+    <div class="header">
+      <a
+        href="/"
+        data-testid="brand-logo"
+        class="btui-c-link btui-c-link--primary bgui-c-header__brand-logo-link"
+        rel=""
+        ><h4>RentalCars.com</h4>
+      </a>
     </div>
     <br />
 
@@ -72,3 +71,6 @@ export default {
   },
 };
 </script>
+
+<style scoped="scss">
+</style>
