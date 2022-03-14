@@ -13,9 +13,9 @@
       />
       <button style="width: 12rem;height: 6rem;font-size: 2rem">Search</button>
     </div>
-    <div v-show="textSuggestionState" style="z-index: 99;">
+    <div :v-show="textSuggestionState" >
       <div class="my-input-suggestion" id="scrollContent1">
-        <ul id="ulScrollContent" :v-for="refSearch in referralSearch">
+        <ul id="ulScrollContent" :v-for="refSearch in completedSuggestions">
           <li
             @click.self="setRefText(refSearch)"
             style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
@@ -35,8 +35,9 @@ export default {
     return {
       placeHolder: "Pick-up Location",
       textSuggestionWidth: 30,
-      referralSearchData: [],
+      allResponseData: [],
       inputVal: "",
+      completedSuggestions: [],
     };
   },
 
@@ -49,7 +50,7 @@ export default {
     async referralSuggestion(e) {
       try {
         const response = await getSearchResponse(6, this.inputVal);
-        this.referralSearchData = response.data.results.docs;
+        this.allResponseData = response.data.results.docs;
       } catch (error) {
         console.error(error);
       }
@@ -63,14 +64,14 @@ export default {
         this.inputVal.length > 1
       );
     },
-    referralSearch() {
-      if (this.referralSearchData.length > 0) {
-        return this.referralSearchData.map(
-          (item) =>
-            `${item.name} - Country: ${item.country}, City: ${item.city}`
-        );
+  },
+  watch: {
+    allResponseData(newVal, oldVal) {
+      if (newVal !== oldVal && newVal.length) {
+        this.completedSuggestions = this.allResponseData.map((item, index) => {
+          return `${item.name} - Country: ${item.country}, City: ${item.city}`;
+        });
       }
-      return [];
     },
   },
 };
