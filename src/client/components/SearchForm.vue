@@ -8,19 +8,22 @@
         class="my-input"
         ref="textSuggestionRef"
         v-model="inputVal"
-        @input="referralSuggestion(event)"
+        @input="referralSuggestion"
         style="width: 60rem;height: 6rem;margin-bottom: 0px;line-height: 1.5; font-size: 2rem"
       />
       <button style="width: 12rem;height: 6rem;font-size: 2rem">Search</button>
     </div>
-    <div :v-show="textSuggestionState" >
+    <div :v-show="textSuggestionState">
       <div class="my-input-suggestion" id="scrollContent1">
-        <ul id="ulScrollContent" :v-for="refSearch in completedSuggestions">
+        <ul
+          id="ulScrollContent"
+          v-for="(suggestion, index) in completedSuggestions"
+          :key="index"
+        >
           <li
-            @click.self="setRefText(refSearch)"
-            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
+            style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis; width: 60rem;height: 6rem;margin-bottom: 0px;line-height: 1.5; font-size: 2rem"
           >
-            {{ refSearch }}
+            {{ suggestion }}
           </li>
         </ul>
       </div>
@@ -42,8 +45,8 @@ export default {
   },
 
   methods: {
-    setRefText(refSearch) {
-      this.inputVal = refSearch;
+    setRefText(suggestion) {
+      this.inputVal = suggestion;
       this.textSuggestionState = false;
     },
 
