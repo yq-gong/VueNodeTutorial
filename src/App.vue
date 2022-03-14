@@ -5,8 +5,6 @@
         <router-view></router-view>
       </transition>
     </div>
-    <p>{{ counter + player }}</p>
-    <button @click="onClick">Cool Test Click Me!</button>
   </div>
 </template>
 
@@ -14,14 +12,6 @@
 export default {
   data() {
     return { testInput: 20 };
-  },
-  computed: {
-    counter() {
-      return this.testInput + 50;
-    },
-    player() {
-      return this.testInput;
-    },
   },
   methods: {
     onClick() {
