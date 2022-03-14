@@ -10,49 +10,23 @@
       </a>
     </div>
     <br />
-
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <td>ID</td>
-          <td>Item Name</td>
-          <td>Item Price</td>
-          <td>Actions</td>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="item in items" :key="item._id">
-          <td>{{ item._id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.price }}</td>
-          <td>
-            <router-link
-              :to="{ name: 'EditItem', params: { id: item._id } }"
-              class="btn btn-primary"
-              >Edit</router-link
-            >
-          </td>
-          <td>
-            <button class="btn btn-danger" v-on:click="deleteItem(item._id)">
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <search-form />
   </div>
 </template>
 
 <script>
+import SearchForm from "./SearchForm.vue";
 export default {
+  components: {
+    SearchForm,
+  },
   data() {
     return {
       items: [],
     };
   },
 
-  created: function () {
+  created: function() {
     this.fetchItems();
   },
 
