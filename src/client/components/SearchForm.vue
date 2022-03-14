@@ -46,6 +46,7 @@ export default {
       inputVal: "",
     };
   },
+
   methods: {
     setRefText(refSearch) {
       this.inputVal = refSearch;
