@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Let's find you the best car!</h3>
-    <input placeholder="Pick-up Locations" />
+    <input :placeholder="placeHolder" />
     <button>Search</button>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   data() {
     return {
-      item: {},
+      placeHolder: "Pick-up Location",
     };
   },
 };
