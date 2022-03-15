@@ -71,8 +71,11 @@ export default {
   watch: {
     allResponseData(newVal, oldVal) {
       if (newVal !== oldVal && newVal.length) {
-        this.completedSuggestions = this.allResponseData.map((item, index) => {
-          return `${item.name} - Country: ${item.country}, City: ${item.city}`;
+        this.completedSuggestions = this.allResponseData.map((item) => {
+          const resultName = item.name;
+          const country = item.country === undefined ? "-" : item.country;
+          const city = item.city === undefined ? "-" : item.city;
+          return `${resultName} - Country: ${country} ; City: ${city}`;
         });
       }
     },
