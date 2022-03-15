@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top">
-      <h3>Let's find you the best car!</h3>
+      <h3>Car Hire – Search, Compare & Save</h3>
       <input
         :placeholder="placeHolder"
         type="text"
@@ -17,6 +17,7 @@
       <div class="my-input-suggestion" id="scrollContent1">
         <ul
           id="ulScrollContent"
+          v-show="inputVal.length > 1"
           v-for="(suggestion, index) in completedSuggestions"
           :key="index"
         >
@@ -75,7 +76,9 @@ export default {
           const resultName = item.name;
           const country = item.country === undefined ? "-" : item.country;
           const city = item.city === undefined ? "-" : item.city;
-          return `${resultName} - Country: ${country} ; City: ${city}`;
+          return resultName === "No results found"
+            ? resultName
+            : `${resultName} - Country: ${country} ; City: ${city}`;
         });
       }
     },
